@@ -16,9 +16,9 @@ docker-compose.yml  PostgreSQL + backend + frontend
 docker compose up -d --build
 ```
 
-- Сайт: http://localhost:8081
-- API: http://localhost:3000/api/health
-- PostgreSQL: localhost:5433 (postgres / postgres, база `airport`)
+- Сайт: http://localhost:8082
+- API: http://localhost:3001/api/health
+- PostgreSQL: localhost:5434 (postgres / postgres, база `airport`)
 
 При старте backend автоматически применяет миграции (`prisma migrate deploy`).
 
@@ -38,7 +38,7 @@ npm install
 npm run dev
 ```
 
-Frontend: http://localhost:5173 (запросы `/api` проксируются на :3000).
+Frontend: http://localhost:5173 (запросы `/api` проксируются на :3001).
 
 ## Prisma
 
