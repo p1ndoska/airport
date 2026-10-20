@@ -1,22 +1,19 @@
-import { useEffect, useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
+import Header from './components/Header.jsx'
+import HomePage from './pages/HomePage.jsx'
+import ContactsPage from './pages/ContactsPage.jsx'
 
 function App() {
-  const [status, setStatus] = useState('проверка...')
-
-  useEffect(() => {
-    fetch('/api/health')
-      .then((res) => res.json())
-      .then((data) => setStatus(data.db === 'ok' ? 'API и база данных работают' : 'API работает, база недоступна'))
-      .catch(() => setStatus('API недоступен'))
-  }, [])
-
   return (
-    <main className="min-h-screen flex items-center justify-center bg-slate-100">
-      <div className="rounded-xl bg-white p-8 shadow text-center">
-        <h1 className="text-2xl font-bold text-slate-800">Airport</h1>
-        <p className="mt-2 text-slate-600">{status}</p>
-      </div>
-    </main>
+    <div className="flex min-h-screen flex-col bg-slate-100">
+      <Header />
+      <main className="a11y-content flex-1">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/contacts" element={<ContactsPage />} />
+        </Routes>
+      </main>
+    </div>
   )
 }
 

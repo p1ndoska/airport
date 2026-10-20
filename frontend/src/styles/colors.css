@@ -1,0 +1,33 @@
+:root {
+  --color-primary: #213659;
+  --color-primary-hover: #1a2a4a;
+
+  --color-focus: #213659;
+  --color-focus-ring: rgba(33, 54, 89, 0.3);
+
+  /* Диалог «Настройки доступности» */
+  --a11y-settings-accent: var(--color-primary);
+  --a11y-settings-accent-hover: var(--color-primary-hover);
+  --a11y-settings-accent-soft: rgba(33, 54, 89, 0.08);
+  --a11y-settings-accent-soft-hover: rgba(33, 54, 89, 0.14);
+
+  /* Высокая контрастность */
+  --a11y-hc-text: #000000;
+  --a11y-hc-bg: #ffffff;
+  --a11y-hc-link: #213659;
+  --a11y-hc-link-hover: #1a2a4a;
+  --a11y-hc-highlight: #e5e5e5;
+
+  /* Тёмная схема */
+  --a11y-dark-text: #e5e5e5;
+  --a11y-dark-bg: #1a1a1a;
+  --a11y-dark-surface: #2d2d2d;
+  --a11y-dark-link: #7dd3fc;
+
+  /* Инвертированная схема */
+  --a11y-inverted-text: #ffff00;
+  --a11y-inverted-bg: #000080;
+  --a11y-inverted-highlight: #1a1a80;
+
+  --overlay-backdrop: rgba(0, 0, 0, 0.45);
+}

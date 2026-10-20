@@ -1,0 +1,168 @@
+/* ===== СТИЛИ ДОСТУПНОСТИ (только для зоны .a11y-content) ===== */
+
+:root {
+  --accessibility-font-size: 1;
+  --accessibility-line-height: 1.5;
+  --accessibility-letter-spacing: 0px;
+  --accessibility-font-family: inherit;
+}
+
+/* Масштаб шрифта: база на html, остальное по rem */
+html.accessibility-mode {
+  font-size: calc(100% * var(--accessibility-font-size)) !important;
+}
+
+body.accessibility-mode {
+  line-height: var(--accessibility-line-height) !important;
+  letter-spacing: var(--accessibility-letter-spacing) !important;
+  font-family: var(--accessibility-font-family) !important;
+}
+
+/* Высокая контрастность — только в зоне контента, не в диалоге настроек */
+body.high-contrast .a11y-content,
+body.high-contrast .a11y-content * {
+  color: var(--a11y-hc-text) !important;
+  background-color: var(--a11y-hc-bg) !important;
+}
+
+body.high-contrast .a11y-content .bg-primary,
+body.high-contrast .a11y-content button,
+body.high-contrast .a11y-content .btn {
+  background-color: var(--a11y-hc-text) !important;
+  color: var(--a11y-hc-bg) !important;
+  border-color: var(--a11y-hc-text) !important;
+}
+
+body.high-contrast .a11y-content a {
+  color: var(--a11y-hc-link) !important;
+  text-decoration: underline !important;
+}
+
+body.high-contrast .a11y-content a:hover {
+  color: var(--a11y-hc-link-hover) !important;
+}
+
+body.high-contrast .a11y-content input,
+body.high-contrast .a11y-content textarea,
+body.high-contrast .a11y-content select {
+  border: 2px solid var(--a11y-hc-text) !important;
+}
+
+/* Тёмная схема */
+body.color-scheme-dark .a11y-content,
+body.color-scheme-dark .a11y-content * {
+  color: var(--a11y-dark-text) !important;
+  background-color: var(--a11y-dark-bg) !important;
+}
+
+body.color-scheme-dark .a11y-content button,
+body.color-scheme-dark .a11y-content .btn {
+  background-color: var(--a11y-dark-text) !important;
+  color: var(--a11y-dark-bg) !important;
+  border-color: var(--a11y-dark-text) !important;
+}
+
+body.color-scheme-dark .a11y-content a {
+  color: var(--a11y-dark-link) !important;
+  text-decoration: underline !important;
+}
+
+body.color-scheme-dark .a11y-content input,
+body.color-scheme-dark .a11y-content textarea,
+body.color-scheme-dark .a11y-content select {
+  border: 2px solid var(--a11y-dark-text) !important;
+  background-color: var(--a11y-dark-surface) !important;
+  color: var(--a11y-dark-text) !important;
+}
+
+/* Инвертированная схема */
+body.color-scheme-inverted .a11y-content,
+body.color-scheme-inverted .a11y-content * {
+  color: var(--a11y-inverted-text) !important;
+  background-color: var(--a11y-inverted-bg) !important;
+}
+
+body.color-scheme-inverted .a11y-content button,
+body.color-scheme-inverted .a11y-content .btn {
+  background-color: var(--a11y-inverted-text) !important;
+  color: var(--a11y-inverted-bg) !important;
+  border-color: var(--a11y-inverted-text) !important;
+}
+
+body.color-scheme-inverted .a11y-content a {
+  color: var(--a11y-inverted-text) !important;
+  text-decoration: underline !important;
+}
+
+/* Уменьшение анимаций */
+body.reduce-motion *,
+body.reduce-motion *::before,
+body.reduce-motion *::after {
+  animation-duration: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0s !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+}
+
+/* Подсветка фокуса */
+body.show-focus *:focus,
+body.show-focus button:focus-visible,
+body.show-focus input:focus-visible,
+body.show-focus textarea:focus-visible,
+body.show-focus select:focus-visible,
+body.show-focus a:focus-visible {
+  outline: 3px solid var(--color-focus) !important;
+  outline-offset: 2px !important;
+  box-shadow: 0 0 0 3px var(--color-focus-ring) !important;
+  border-radius: 2px !important;
+}
+
+body.show-focus input[type="range"]:focus {
+  border-radius: 9999px !important;
+}
+
+/* Читаемость в контенте */
+body.accessibility-mode .a11y-content a {
+  text-decoration: underline !important;
+}
+
+body.accessibility-mode .a11y-content table {
+  border-collapse: collapse !important;
+}
+
+body.accessibility-mode .a11y-content th,
+body.accessibility-mode .a11y-content td {
+  border: 1px solid currentColor !important;
+  padding: 0.5rem 0.75rem !important;
+}
+
+/* Черно-белый режим */
+body.a11y-grayscale .a11y-content {
+  filter: grayscale(100%) !important;
+}
+
+/* Скрытие изображений */
+body.a11y-hide-images img {
+  visibility: hidden !important;
+  min-height: 1px;
+}
+
+/* Диалог «Настройки доступности» — фирменный синий */
+.accessibility-settings-dialog input[type="range"] {
+  accent-color: var(--a11y-settings-accent);
+}
+
+.accessibility-settings-dialog select:focus {
+  outline: none;
+  border-color: var(--a11y-settings-accent);
+  box-shadow: 0 0 0 3px var(--color-focus-ring);
+}
+
+/* Содержимое кнопок наследует цвета кнопки */
+body.high-contrast .a11y-content button *,
+body.color-scheme-dark .a11y-content button *,
+body.color-scheme-inverted .a11y-content button * {
+  background-color: transparent !important;
+  color: inherit !important;
+}
