@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react'
+import PhotoCarousel from '../components/PhotoCarousel.jsx'
+import { CAROUSEL_INTERVAL_MS, CAROUSEL_SLIDES } from '../config/carousel.js'
 
 export default function HomePage() {
   const [status, setStatus] = useState('проверка...')
@@ -11,9 +13,12 @@ export default function HomePage() {
   }, [])
 
   return (
-    <div className="mx-auto max-w-7xl px-4 py-10">
-      <h1 className="text-3xl font-bold text-slate-800">Airport</h1>
-      <p className="mt-2 text-slate-600">{status}</p>
-    </div>
+    <>
+      <PhotoCarousel slides={CAROUSEL_SLIDES} interval={CAROUSEL_INTERVAL_MS} />
+      <div className="mx-auto max-w-7xl px-4 py-10">
+        <h1 className="text-3xl font-bold text-slate-800">Airport</h1>
+        <p className="mt-2 text-slate-600">{status}</p>
+      </div>
+    </>
   )
 }
