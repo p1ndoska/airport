@@ -13,8 +13,8 @@ function Slide({ slide, active }) {
       aria-hidden={!active}
     >
       {failed ? (
-        <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-gradient-to-br from-[var(--color-primary)] to-slate-500 text-white">
-          <ImageOff className="h-10 w-10 opacity-70" aria-hidden="true" />
+        <div className="flex h-full w-full flex-col items-center justify-center gap-3 bg-slate-600 text-white">
+        <ImageOff className="h-10 w-10 opacity-70" aria-hidden="true" />
           <span className="text-lg font-medium">{slide.alt}</span>
           <span className="text-sm opacity-70">{slide.src}</span>
         </div>
