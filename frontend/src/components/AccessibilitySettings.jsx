@@ -1,4 +1,5 @@
 import { useEffect, useId, useRef, useState } from 'react'
+import { createPortal } from 'react-dom'
 import { Eye, RotateCcw, Settings, X } from 'lucide-react'
 import { useAccessibility } from '../contexts/useAccessibility.js'
 
@@ -90,7 +91,7 @@ function SelectRow({ id, label, hint, value, options, onChange }) {
   )
 }
 
-export default function AccessibilitySettings({ triggerClassName = '' }) {
+export default function AccessibilitySettings({ triggerClassName = '', labelClassName = 'hidden md:inline', onOpen }) {
   const { settings, updateSettings, resetSettings, isAccessibilityMode, toggleAccessibilityMode } =
     useAccessibility()
   const [open, setOpen] = useState(false)
@@ -121,16 +122,20 @@ export default function AccessibilitySettings({ triggerClassName = '' }) {
       <button
         ref={triggerRef}
         type="button"
-        onClick={() => setOpen(true)}
+        onClick={() => {
+          setOpen(true)
+          onOpen?.()
+        }}
         className={triggerClassName}
         aria-label="Версия для слабовидящих"
         aria-haspopup="dialog"
       >
         <Eye className="h-5 w-5" aria-hidden="true" />
-        <span className="hidden md:inline">Версия для слабовидящих</span>
+        <span className={labelClassName}>Версия для слабовидящих</span>
       </button>
 
-      {open && (
+      {open &&
+        createPortal(
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-[var(--overlay-backdrop)] p-4"
           onMouseDown={(e) => {
@@ -289,8 +294,9 @@ export default function AccessibilitySettings({ triggerClassName = '' }) {
               </div>
             </div>
           </div>
-        </div>
-      )}
+        </div>,
+          document.body,
+        )}
     </>
   )
 }
