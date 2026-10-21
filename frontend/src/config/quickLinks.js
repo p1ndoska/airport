@@ -5,5 +5,5 @@ export const QUICK_LINKS = [
   { to: '/transport', title: 'Транспорт', subtitle: 'Проезд, парковки', icon: Car },
   { to: '/services', title: 'Услуги', subtitle: 'Карта, инфраструктура', icon: MapPinned },
   { to: '/airport', title: 'Аэропорт', subtitle: 'Общая информация', icon: PlaneTakeoff },
-  { to: '/media', title: 'Медиацентр', subtitle: 'М.Ю. Лермонтов', icon: Camera },
+  { to: '/media', title: 'Медиацентр', subtitle: '', icon: Camera },
 ]
