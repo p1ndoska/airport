@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
-import { Mail, Menu, Phone, Plane, X } from 'lucide-react'
+import { Mail, Menu, Phone, X } from 'lucide-react'
 import AccessibilitySettings from './AccessibilitySettings.jsx'
 import { CONTACTS, emailHref, phoneHref } from '../config/contacts.js'
 
