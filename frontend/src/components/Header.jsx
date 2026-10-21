@@ -35,7 +35,7 @@ export default function Header() {
           onClick={() => setMenuOpen(false)}
         >
           <Plane className="h-6 w-6" aria-hidden="true" />
-          Airport
+          Аэропорт Брест
         </Link>
 
         <div className="hidden flex-wrap items-center gap-2 md:flex">
