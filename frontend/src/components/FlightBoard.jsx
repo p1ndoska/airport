@@ -11,7 +11,7 @@ export default function FlightBoard() {
         Онлайн-табло рейсов
       </h2>
       <div className="flex min-h-64 items-center justify-center rounded-b-md border border-t-0 border-dashed border-slate-300 bg-white p-6 text-center text-slate-400">
-        Здесь будет табло рейсов
+        
       </div>
     </section>
   )
