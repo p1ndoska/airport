@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function QuickLinks({ links }) {
   return (
     <nav aria-label="Разделы сайта" className="a11y-content border-b border-slate-200 bg-white">
-      <ul className="mx-auto flex max-w-7xl flex-wrap justify-center gap-y-2 px-2 py-4 lg:px-4">
+      <ul className="mx-auto flex max-w-page flex-wrap justify-center gap-y-2 px-2 py-4 lg:px-4">
         {links.map(({ to, title, subtitle, icon: Icon }) => (
           <li key={to} className="flex basis-1/2 justify-center sm:basis-1/3 md:basis-1/5">
             <Link

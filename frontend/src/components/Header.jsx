@@ -28,7 +28,7 @@ export default function Header() {
 
   return (
     <header className="a11y-content relative z-40 bg-[var(--color-primary)] text-white shadow-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3">
+      <div className="mx-auto flex max-w-page items-center justify-between gap-3 px-4 py-3">
         <Link
           to="/"
           className="flex items-center gap-2 text-xl font-bold text-white no-underline"

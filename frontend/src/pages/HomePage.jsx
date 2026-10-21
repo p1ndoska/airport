@@ -18,7 +18,7 @@ export default function HomePage() {
     <>
       <PhotoCarousel slides={CAROUSEL_SLIDES} interval={CAROUSEL_INTERVAL_MS} />
       <QuickLinks links={QUICK_LINKS} />
-      <div className="mx-auto max-w-7xl px-4 py-10">
+      <div className="mx-auto max-w-page px-4 py-10">
         <h1 className="text-3xl font-bold text-slate-800">Airport</h1>
         <p className="mt-2 text-slate-600">{status}</p>
       </div>

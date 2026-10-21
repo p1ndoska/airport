@@ -66,7 +66,7 @@ export default function PhotoCarousel({ slides, interval = 5000 }) {
 
   return (
     <section
-      className="a11y-content relative h-56 w-full overflow-hidden bg-slate-300 sm:h-80 lg:h-[28rem]"
+      className="a11y-content relative mx-auto h-56 w-full max-w-page overflow-hidden bg-slate-300 sm:h-80 lg:h-[28rem]"
       aria-roledescription="карусель"
       aria-label="Фотографии"
       tabIndex={0}

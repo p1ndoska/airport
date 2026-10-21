@@ -1,3 +1,8 @@
 @import "tailwindcss";
 @import "./styles/colors.css";
 @import "./styles/accessibility.css";
+
+/* Максимальная ширина содержимого сайта */
+@theme {
+  --container-page: 80rem;
+}
