@@ -34,7 +34,6 @@ export default function Header() {
           className="flex items-center gap-2 text-xl font-bold text-white no-underline"
           onClick={() => setMenuOpen(false)}
         >
-          <Plane className="h-6 w-6" aria-hidden="true" />
           Аэропорт Брест
         </Link>
 
