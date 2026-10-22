@@ -13,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/schedule" element={<SectionPage title="Расписание" />} />
           {QUICK_LINKS.map(({ to, title, subtitle }) => (
             <Route key={to} path={to} element={<SectionPage title={title} subtitle={subtitle} />} />
           ))}
