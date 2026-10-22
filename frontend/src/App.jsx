@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage.jsx'
 import ContactsPage from './pages/ContactsPage.jsx'
 import SectionPage from './pages/SectionPage.jsx'
 import { QUICK_LINKS } from './config/quickLinks.js'
+import { SERVICE_LINKS } from './config/serviceLinks.js'
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/contacts" element={<ContactsPage />} />
           <Route path="/schedule" element={<SectionPage title="Расписание" />} />
-          {QUICK_LINKS.map(({ to, title, subtitle }) => (
+          {[...QUICK_LINKS, ...SERVICE_LINKS].map(({ to, title, subtitle }) => (
             <Route key={to} path={to} element={<SectionPage title={title} subtitle={subtitle} />} />
           ))}
         </Routes>

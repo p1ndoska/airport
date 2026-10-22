@@ -22,7 +22,7 @@ export default function FlightBoard({ departures = [], arrivals = [], onRefresh 
   const flights = activeTab === 'departures' ? departures : arrivals
 
   return (
-    <section aria-labelledby="flight-board-title" className="a11y-content mx-auto max-w-page px-4 py-8">
+    <section aria-labelledby="flight-board-title" className="a11y-content min-w-0">
       <h2
         id="flight-board-title"
         className="flex items-center gap-3 rounded-t-md bg-[var(--color-primary)] px-4 py-3 text-xl font-semibold text-white"
