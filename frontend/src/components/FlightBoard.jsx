@@ -31,7 +31,7 @@ export default function FlightBoard({ departures = [], arrivals = [], onRefresh 
         Онлайн-табло рейсов
       </h2>
 
-      <div className="rounded-b-md bg-[#475562] text-white">
+      <div className="rounded-b-md border border-t-0 border-slate-200 bg-white text-slate-800">
         <div className="flex flex-wrap items-center gap-2 p-3 sm:gap-4">
           <div role="tablist" aria-label="Тип рейсов" className="flex gap-2">
             {TABS.map(({ id, label, icon: Icon }) => {
@@ -46,10 +46,12 @@ export default function FlightBoard({ departures = [], arrivals = [], onRefresh 
                   aria-controls="flight-board-panel"
                   onClick={() => setActiveTab(id)}
                   className={`flex cursor-pointer items-center gap-2 rounded-sm px-4 py-2 text-lg font-medium transition-colors sm:gap-3 sm:px-6 sm:text-xl ${
-                    selected ? 'bg-[#eb7501] text-slate-900' : 'bg-[#323b44] text-slate-400 hover:text-slate-200'
+                    selected
+                      ? 'bg-[var(--color-primary)] text-white'
+                      : 'bg-slate-100 text-[var(--color-primary)] hover:bg-slate-200'
                   }`}
                 >
-                  <Icon className={`h-7 w-7 ${selected ? 'text-white' : 'text-[#eb7501]'}`} aria-hidden="true" />
+                  <Icon className={`h-7 w-7 ${selected ? 'text-white' : 'text-[var(--color-primary)]'}`} aria-hidden="true" />
                   {label}
                 </button>
               )
@@ -59,13 +61,13 @@ export default function FlightBoard({ departures = [], arrivals = [], onRefresh 
           <button
             type="button"
             onClick={onRefresh}
-            className="flex cursor-pointer items-center gap-1 px-2 py-2 text-sm text-slate-300 hover:text-white sm:ml-8"
+            className="flex cursor-pointer items-center gap-1 px-2 py-2 text-sm text-slate-500 hover:text-[var(--color-primary)] sm:ml-8"
           >
             <RefreshCw className="h-4 w-4" aria-hidden="true" />
             Обновить
           </button>
 
-          <Link to="/schedule" className="ml-auto px-2 py-2 text-lg font-bold text-white underline hover:text-slate-200">
+          <Link to="/schedule" className="ml-auto px-2 py-2 text-lg font-bold text-[var(--color-primary)] underline hover:text-[var(--color-primary-hover)]">
             Расписание
           </Link>
         </div>
@@ -78,7 +80,7 @@ export default function FlightBoard({ departures = [], arrivals = [], onRefresh 
         >
           <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
             <thead>
-              <tr className="text-[#8fb3d9]">
+              <tr className="bg-slate-100 text-slate-500">
                 {COLUMNS.map(({ key, label }) => (
                   <th key={key} scope="col" className="px-4 py-2 font-normal">
                     {label ?? tab.cityColumn}
@@ -88,7 +90,7 @@ export default function FlightBoard({ departures = [], arrivals = [], onRefresh 
             </thead>
             <tbody>
               {flights.map((flight) => (
-                <tr key={`${flight.flight}-${flight.scheduled}`} className="border-t border-white/10">
+                <tr key={`${flight.flight}-${flight.scheduled}`} className="border-t border-slate-200">
                   {COLUMNS.map(({ key }) => (
                     <td key={key} className="px-4 py-3">
                       {flight[key]}
@@ -100,7 +102,7 @@ export default function FlightBoard({ departures = [], arrivals = [], onRefresh 
           </table>
         </div>
         {flights.length === 0 && (
-          <p className="border-t border-white/10 px-4 py-10 text-center text-sm text-slate-300">Нет данных о рейсах</p>
+          <p className="border-t border-slate-200 px-4 py-10 text-center text-sm text-slate-400">Нет данных о рейсах</p>
         )}
       </div>
     </section>
