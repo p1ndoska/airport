@@ -6,6 +6,7 @@ import ContactsPage from './pages/ContactsPage.jsx'
 import SectionPage from './pages/SectionPage.jsx'
 import { QUICK_LINKS } from './config/quickLinks.js'
 import { SERVICE_LINKS } from './config/serviceLinks.js'
+import { INFO_LINKS, USEFUL_PHONES_LINK } from './config/infoLinks.js'
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
           <Route path="/about" element={<SectionPage title="О предприятии" />} />
           <Route path="/about/vacancies" element={<SectionPage title="Открытые вакансии" />} />
           <Route path="/cookie-policy" element={<SectionPage title="Политика использования cookie" />} />
-          {[...QUICK_LINKS, ...SERVICE_LINKS].map(({ to, title, subtitle }) => (
+          {[...QUICK_LINKS, ...SERVICE_LINKS, ...INFO_LINKS, USEFUL_PHONES_LINK].map(({ to, title, subtitle }) => (
             <Route key={to} path={to} element={<SectionPage title={title} subtitle={subtitle} />} />
           ))}
         </Routes>
