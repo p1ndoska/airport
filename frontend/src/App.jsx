@@ -4,6 +4,8 @@ import Footer from './components/Footer.jsx'
 import HomePage from './pages/HomePage.jsx'
 import ContactsPage from './pages/ContactsPage.jsx'
 import SectionPage from './pages/SectionPage.jsx'
+import NewsPage from './pages/NewsPage.jsx'
+import NewsDetailPage from './pages/NewsDetailPage.jsx'
 import { QUICK_LINKS } from './config/quickLinks.js'
 import { SERVICE_LINKS } from './config/serviceLinks.js'
 import { INFO_LINKS, USEFUL_PHONES_LINK } from './config/infoLinks.js'
@@ -17,6 +19,8 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/contacts" element={<ContactsPage />} />
           <Route path="/schedule" element={<SectionPage title="Расписание" />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:id" element={<NewsDetailPage />} />
           <Route path="/about" element={<SectionPage title="О предприятии" />} />
           <Route path="/about/vacancies" element={<SectionPage title="Открытые вакансии" />} />
           <Route path="/cookie-policy" element={<SectionPage title="Политика использования cookie" />} />

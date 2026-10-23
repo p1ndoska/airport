@@ -4,6 +4,7 @@ import QuickLinks from '../components/QuickLinks.jsx'
 import FlightBoard from '../components/FlightBoard.jsx'
 import ServiceTiles from '../components/ServiceTiles.jsx'
 import InfoBar from '../components/InfoBar.jsx'
+import HomeNewsSection from '../components/HomeNewsSection.jsx'
 import { CAROUSEL_INTERVAL_MS, CAROUSEL_SLIDES } from '../config/carousel.js'
 import { QUICK_LINKS } from '../config/quickLinks.js'
 import { SERVICE_LINKS } from '../config/serviceLinks.js'
@@ -28,6 +29,7 @@ export default function HomePage() {
         <ServiceTiles links={SERVICE_LINKS} />
         <InfoBar links={INFO_LINKS} phonesLink={USEFUL_PHONES_LINK} />
       </div>
+      <HomeNewsSection />
       <div className="mx-auto max-w-page px-4 py-10">
         <h1 className="text-3xl font-bold text-slate-800">Airport</h1>
         <p className="mt-2 text-slate-600">{status}</p>
