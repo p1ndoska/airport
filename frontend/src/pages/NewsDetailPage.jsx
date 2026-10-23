@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { fetchJson, formatNewsDate, getNewsImageUrl } from '../utils/news.js'
+import { TEST_NEWS } from '../config/testNews.js'
 
 export default function NewsDetailPage() {
   const { id } = useParams()
   const [state, setState] = useState({ id: null, news: null, error: false })
-  const loading = state.id !== id
+  const testNews = TEST_NEWS.find((item) => item.id === id)
+  const loading = !testNews && state.id !== id
 
   useEffect(() => {
+    if (testNews) return
     fetchJson(`/api/news/${id}`)
       .then((news) => setState({ id, news, error: false }))
       .catch(() => setState({ id, news: null, error: true }))
-  }, [id])
+  }, [id, testNews])
 
-  const { news, error } = state
+  const news = testNews ?? state.news
+  const error = !testNews && state.error
   const imageUrl = getNewsImageUrl(news?.photo)
 
   return (

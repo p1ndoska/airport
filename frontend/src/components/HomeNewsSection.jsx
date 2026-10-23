@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { fetchJson, formatNewsDate, getNewsExcerpt, getNewsImageUrl } from '../utils/news.js'
+import { TEST_NEWS } from '../config/testNews.js'
 
 const NEWS_PER_VIEW = 3
 
@@ -36,14 +37,13 @@ function NewsCard({ news }) {
 export default function HomeNewsSection() {
   const [news, setNews] = useState([])
   const [isLoading, setIsLoading] = useState(true)
-  const [isError, setIsError] = useState(false)
   const [startIndex, setStartIndex] = useState(0)
   const maxStartIndex = Math.max(0, news.length - NEWS_PER_VIEW)
 
   useEffect(() => {
     fetchJson('/api/news')
-      .then(setNews)
-      .catch(() => setIsError(true))
+      .then((items) => setNews(items.length > 0 ? items : TEST_NEWS))
+      .catch(() => setNews(TEST_NEWS))
       .finally(() => setIsLoading(false))
   }, [])
 
@@ -58,7 +58,7 @@ export default function HomeNewsSection() {
         </div>
         {isLoading ? (
           <div className="home-news__loading">Загрузка новостей…</div>
-        ) : isError || news.length === 0 ? (
+        ) : news.length === 0 ? (
           <div className="home-news__loading">Новостей пока нет</div>
         ) : (
           <div className="home-news__carousel">

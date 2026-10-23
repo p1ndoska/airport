@@ -1,14 +1,15 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { fetchJson, formatNewsDate, getNewsExcerpt } from '../utils/news.js'
+import { TEST_NEWS } from '../config/testNews.js'
 
 export default function NewsPage() {
   const [news, setNews] = useState(null)
 
   useEffect(() => {
     fetchJson('/api/news')
-      .then(setNews)
-      .catch(() => setNews([]))
+      .then((items) => setNews(items.length > 0 ? items : TEST_NEWS))
+      .catch(() => setNews(TEST_NEWS))
   }, [])
 
   return (
