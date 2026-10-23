@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { fetchJson, formatNewsDate, getNewsImageUrl } from '../utils/news.js'
+import { CalendarDays, Tag } from 'lucide-react'
+import { fetchJson, formatNewsDateLong, getNewsImageUrl } from '../utils/news.js'
 import { TEST_NEWS } from '../config/testNews.js'
 
 export default function NewsDetailPage() {
@@ -30,13 +31,28 @@ export default function NewsDetailPage() {
       ) : error ? (
         <p className="mt-4 text-slate-600">Новость не найдена</p>
       ) : (
-        <article className="mt-4">
-          <h1 className="text-3xl font-bold text-slate-800">{news.name}</h1>
-          <time className="text-sm text-slate-500" dateTime={news.createdAt}>
-            {formatNewsDate(news.createdAt)}
-          </time>
-          {imageUrl && <img src={imageUrl} alt={news.name} className="mt-4 max-h-[28rem] w-full rounded-md object-cover" />}
-          <p className="mt-4 whitespace-pre-line text-slate-700">{news.content}</p>
+        <article className="mt-4 rounded-md bg-white p-6 shadow-sm sm:p-8">
+          <h1 className="text-2xl font-bold leading-tight text-[var(--color-primary)] sm:text-4xl">{news.name}</h1>
+          <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-slate-500">
+            <span className="flex items-center gap-1.5">
+              <CalendarDays className="h-4 w-4" aria-hidden="true" />
+              <time dateTime={news.createdAt}>{formatNewsDateLong(news.createdAt)}</time>
+            </span>
+            {news.category && (
+              <span className="flex items-center gap-1.5">
+                <Tag className="h-4 w-4" aria-hidden="true" />
+                <span className="rounded-full bg-[var(--color-primary)] px-2.5 py-0.5 text-xs font-medium text-white">
+                  {news.category}
+                </span>
+              </span>
+            )}
+          </div>
+          {imageUrl && <img src={imageUrl} alt={news.name} className="mt-6 max-h-[28rem] w-full rounded-md object-cover" />}
+          <div className="mt-6 space-y-4 leading-relaxed text-slate-700">
+            {(news.content ?? '').split(/\n\s*\n/).map((paragraph, index) => (
+              <p key={index} className="indent-8">{paragraph}</p>
+            ))}
+          </div>
         </article>
       )}
     </div>
