@@ -1,20 +1,46 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
-import { PlaneLanding, PlaneTakeoff, RefreshCw } from 'lucide-react'
+import { CalendarDays, MapPin, Plane, PlaneLanding, PlaneTakeoff, RefreshCw, SquareArrowUpRight } from 'lucide-react'
 
 const TABS = [
-  { id: 'departures', label: 'Вылет', icon: PlaneTakeoff, cityColumn: 'Назначение' },
-  { id: 'arrivals', label: 'Прилет', icon: PlaneLanding, cityColumn: 'Пункт вылета' },
+  { id: 'departures', label: 'Вылет', icon: PlaneTakeoff, cityColumn: 'Куда' },
+  { id: 'arrivals', label: 'Прилет', icon: PlaneLanding, cityColumn: 'Откуда' },
 ]
 
 const COLUMNS = [
-  { key: 'flight', label: 'Рейс' },
-  { key: 'city', label: null },
-  { key: 'scheduled', label: 'По расписанию' },
-  { key: 'estimated', label: 'Расчетное' },
-  { key: 'sector', label: 'Сектор' },
-  { key: 'status', label: 'Статус' },
+  { key: 'time', label: 'Время', icon: CalendarDays },
+  { key: 'city', label: null, icon: MapPin },
+  { key: 'airline', label: 'Авиакомпания, рейс', icon: Plane },
+  { key: 'terminal', label: 'Терминал', icon: SquareArrowUpRight },
 ]
+
+function airlineInitials(name) {
+  return name
+    .split(/\s+/)
+    .map((word) => word[0])
+    .join('')
+    .slice(0, 2)
+    .toUpperCase()
+}
+
+function renderCell(key, flight) {
+  if (key === 'airline') {
+    return (
+      <span className="flex items-center gap-3">
+        <span
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 border-[var(--color-primary)] text-[0.65rem] font-bold text-[var(--color-primary)]"
+          aria-hidden="true"
+        >
+          {airlineInitials(flight.airline)}
+        </span>
+        <span>
+          {flight.airline}, <span className="font-medium text-[var(--color-primary)]">{flight.flight}</span>
+        </span>
+      </span>
+    )
+  }
+  return flight[key] || '–'
+}
 
 export default function FlightBoard({ departures = [], arrivals = [], onRefresh }) {
   const [activeTab, setActiveTab] = useState('departures')
@@ -80,20 +106,23 @@ export default function FlightBoard({ departures = [], arrivals = [], onRefresh 
         >
           <table className="w-full min-w-[40rem] border-collapse text-left text-sm">
             <thead>
-              <tr className="bg-slate-100 text-slate-500">
-                {COLUMNS.map(({ key, label }) => (
-                  <th key={key} scope="col" className="px-4 py-2 font-normal">
-                    {label ?? tab.cityColumn}
+              <tr className="bg-slate-100">
+                {COLUMNS.map(({ key, label, icon: Icon }) => (
+                  <th key={key} scope="col" className="px-4 py-3 font-medium text-[var(--color-primary)]">
+                    <span className="flex items-center gap-2">
+                      <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />
+                      {label ?? tab.cityColumn}
+                    </span>
                   </th>
                 ))}
               </tr>
             </thead>
             <tbody>
               {flights.map((flight) => (
-                <tr key={`${flight.flight}-${flight.scheduled}`} className="border-t border-slate-200">
+                <tr key={`${flight.flight}-${flight.time}`} className="border-t border-slate-200">
                   {COLUMNS.map(({ key }) => (
                     <td key={key} className="px-4 py-3">
-                      {flight[key]}
+                      {renderCell(key, flight)}
                     </td>
                   ))}
                 </tr>
